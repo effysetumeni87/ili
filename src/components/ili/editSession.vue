@@ -1,10 +1,10 @@
 <template>
   <div>
-      <q-btn label="Edit Session" flat icon="edit" color="blue-grey-8" @click="setEditsession(true)" />
+      <q-btn label="Edit Session Details" flat icon="edit" color="blue-grey-8" @click="setEditsession(true)" />
       <q-dialog v-model="editsessionDialogue">
       <q-card style="min-width:350px;">
         <q-card-section>
-          <div class="text-h6">Edit Session</div>
+          <div class="text-h6">Edit Session Details</div>
         </q-card-section>
 
         <q-separator />

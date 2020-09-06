@@ -14,16 +14,17 @@
    
     <q-card class="row q-mt-lg">
        
-        <q-card-section class="col-8 text-center text-h6 text-weight-bold">
+        <q-card-section class="col-12 text-center text-h6 text-weight-bold">
          
           <q-card class="row">
+            <div>
             <q-card-section :class="(72<=total && total<=90)?'col-6 bg-green text-white ':' col-6 bg-grey-5'">
               I(72-90)
             </q-card-section>
             <q-card-section :class="(54<=total && total<=71)?'col-6 bg-green text-white ':' col-6 bg-grey-4'">
               II(54-71)
             </q-card-section>
-            
+            </div>
           </q-card>
          
        </q-card-section>
@@ -47,7 +48,7 @@ export default {
   },
   created(){
     const id = this.actsessionId
-    this.$store.dispatch('quarterReports/getRacer',id)
+    this.$store.dispatch('quarterReports/geBrainstorm',id)
   },
   computed:{
    ...mapGetters({

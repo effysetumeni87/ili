@@ -1,6 +1,6 @@
 <template>
  <div class="">
-     <q-btn class="gt-xs" color="orange" size="12px" label="Email Results"  @click="dialog=true"  flat dense icon="email" />  
+     <q-btn class="gt-xs" color="orange-10" size="md" label="VIEW ASSESSMENT Results"  @click="dialog=true"  flat dense icon="assignment" />  
                  
      <q-dialog
       v-model="dialog"
@@ -284,6 +284,7 @@
 </template>
 
 <script>
+import createPdf from '../createpdf'
 //import Notify from 'quasar' 
 import {mapGetters} from 'vuex'
 import racerResults from '../racerResults'
@@ -354,6 +355,10 @@ export default {
    }
   },
   methods:{
+    downloadItem(){
+        const data ="this is some data"
+     return  createPdf(data,doc.save('test.pdf'))
+      },
     setEmailpopup(val){
       this.$store.commit('quarterReports/SET_RACEREMAILPOPUP',val)
      },
@@ -862,9 +867,11 @@ export default {
         doc.text(100,110, 'W');
 
       if(72<=total && total<=90){
-          doc.setFontSize(11)
-        doc.text(11,30, `Session Summary: The score for this session was :${total} which is in  the 1st Quadrant`);   
-        doc.setFontSize(11)
+          doc.setFontSize(12)
+        doc.text(lMargin,30, `Session Summary: The score for this session was :${total} which is in  the 1st Quadrant`);   
+      doc.setFont("helvetica", "bold");
+      doc.text(lMargin,170,'Suggested Actions to Maintain cohesion with a visionary leadership');
+       doc.setFontSize(11)
         doc.setFillColor(240, 241, 242);  
        
          doc.rect(101, 50, 60, 25, 'F'); 
@@ -883,7 +890,9 @@ export default {
 
         }else if(54<=total && total<=71){
         doc.setFontSize(11)
-        doc.text(11,30, `Session Summary: The score for this session was :${total} which is in  the 2nd Quadrant`);   
+        doc.text(lMargin,30, `Session Summary: The score for this session was :${total} which is in  the 2nd Quadrant`);  
+           doc.text(lMargin,170,'Suggested Actions to Understand and maintain advantages');
+      
         doc.setFontSize(11)
         doc.setFillColor(240, 241, 242);    
         doc.rect(40, 50, 60, 25, 'F'); 
@@ -922,9 +931,10 @@ export default {
         doc.setTextColor(255, 255, 255);
        doc.text(80,85, 'III (36-53)');
         }
-         else if(18<=total && total<=35){
-        doc.setFontSize(11)
-        doc.text(11,30, `Session Summary: The score for this session was :${total} which is in  the 4th Quadrant`);   
+         else {
+        doc.setFontSize(12)
+        doc.text(lMargin,30, `Session Summary: The score for this session was :${total} which is in  the 4th Quadrant`);
+        doc.text(lMargin,30, `Session Summary: The score for this session was :${total} which is in  the 4th Quadrant`);   
         doc.setFontSize(11)
         doc.setFillColor(240, 241, 242);    
         doc.rect(40, 50, 60, 25, 'F'); 
@@ -941,8 +951,16 @@ export default {
         doc.text(110,85, 'IV (18-35)');
      }
        // doc.setDrawColor(242, 242, 242); 
-       
-           
+       doc.addPage()
+        doc.setFont("helvetica", "bold");
+        doc.text(lMargin,200,'Ratings and Suggested Actions');
+         doc.setFont("helvetica", "regular"); 
+        var paragraph7= listTostring(this.form.frequencytable)
+        var lines7 =doc.splitTextToSize(paragraph7, (200-lMargin-rMargin))
+        doc.text(lMargin,205,lines7);
+
+         
+      
      // var  pdfAtt =   btoa(doc.output())
      //  this.form.redData = pdfAtt
         doc.save(`racer_.pdf`)

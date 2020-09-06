@@ -174,6 +174,16 @@ const quarterReports  ={
        }
      },
      async getRacer({commit},payload){
+      commit('SET_LOADINGRACER',true)
+      try {
+       let racerReports = await axios.get(`https://sheet.best/api/sheets/68b30f4e-71ce-455f-b85b-1c90fdb07361/Session%20ID/${payload}`)
+    
+      }
+      catch(err){
+        console.log(err.message)
+      }
+    },
+     async getRacer({commit},payload){
        commit('SET_LOADINGRACER',true)
        try {
         let racerReports = await axios.get(`https://sheet.best/api/sheets/68b30f4e-71ce-455f-b85b-1c90fdb07361/Session%20ID/${payload}`)

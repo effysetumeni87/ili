@@ -282,6 +282,7 @@ created(){
       
     },
     methods: {
+      
       goBack(){
       this.$router.back()
       },
