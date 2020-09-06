@@ -25,8 +25,8 @@
                     <q-space />
                       <div class="text-teal-1 text-weight-bolder">
                         STATUS
-                        <q-btn flat  label="SELF-ASSESSEMEN" icon-right="check_circle"    />
-                        <q-btn flat  label="BRAINSTORM" icon="today"    />
+                        <!-- <q-btn flat (this.$store.state.quarterReports.)?label="SELF-ASSESSEMENT" icon-right="check_circle"    />
+                        <q-btn flat  label="BRAIN-STORM" icon="today"    /> -->
                         </div>                 
                 </q-toolbar>
                 <q-card-section class="text-weight-bold">
@@ -90,7 +90,7 @@
             <q-card-section class=' col-3 bg-grey-1'>
               Participants
             </q-card-section>
-            <q-card-section class=" col-9 bg-grey-2">
+            <q-card-section class="text-left col-9 bg-grey-2">
              {{current[0].participants}}
             </q-card-section>
              <q-separator />
